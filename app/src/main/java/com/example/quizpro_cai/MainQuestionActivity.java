@@ -17,6 +17,9 @@ public class MainQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_question);
 
         btnNumbering = findViewById(R.id.qMainNumeracy);
+        btnReading = findViewById(R.id.qMainReading);
+        btnLanguageLiteracy = findViewById(R.id.qMainLanguageLiteracy);
+        btnFilipino = findViewById(R.id.qMainFilipino);
 
         btnLanguageLiteracy.setOnClickListener(new View.OnClickListener() {
             @Override
