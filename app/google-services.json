@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "961351605005",
+    "project_id": "quizpro-users",
+    "storage_bucket": "quizpro-users.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961351605005:android:af6944621009b68d456e44",
+        "android_client_info": {
+          "package_name": "com.example.quizpro_cai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961351605005-jn8v0rhhb7gh8peqjtf727hfupmafkte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVGIsX7xnlB-C1uqP5CkxGrJuB9gluBaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961351605005-jn8v0rhhb7gh8peqjtf727hfupmafkte.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
