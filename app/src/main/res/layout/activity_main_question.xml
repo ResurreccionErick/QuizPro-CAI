@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainQuestionActivity"
-    android:background="@drawable/gradient_background">
+    android:background="#3F51B5">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
