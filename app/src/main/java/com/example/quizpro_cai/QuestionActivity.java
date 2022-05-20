@@ -2,6 +2,7 @@ package com.example.quizpro_cai;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -157,7 +158,11 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void finishQuiz() {
-    finish();
+
+        Intent resIntent = new Intent(getApplicationContext(), QuizResult.class);
+        resIntent.putExtra("questionOverall", questionCountTotal);
+        resIntent.putExtra("resultScore" , score);
+        startActivity(resIntent);
     }
 
 

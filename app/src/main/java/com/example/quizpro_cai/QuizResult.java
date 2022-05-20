@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class QuizResult extends AppCompatActivity {
 
-    private TextView tvCorrect, tvIncorrect;
+    private TextView tvCorrect;
     private Button btnDone;
 
     @Override
@@ -19,16 +19,13 @@ public class QuizResult extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_result);
 
         tvCorrect = findViewById(R.id.tvCorrect);
-        tvIncorrect = findViewById(R.id.tvIncorrect);
 
         btnDone = findViewById(R.id.btnDone);
 
-        final int getCorrectAns = getIntent().getIntExtra("correct",0);
-        final int getIncorrectAns = getIntent().getIntExtra("incorrect",0);
+        final int getCorrectAns = getIntent().getIntExtra("resultScore",0);
+        final int getTotalNoOfQues = getIntent().getIntExtra("questionOverall",0);
 
-
-        tvCorrect.setText("Correct Answer: " + getCorrectAns);
-        tvIncorrect.setText("Incorrect Answer: " + getIncorrectAns);
+        tvCorrect.setText(getCorrectAns + "/" + getTotalNoOfQues);
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
