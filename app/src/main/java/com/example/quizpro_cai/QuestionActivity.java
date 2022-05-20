@@ -1,12 +1,14 @@
 package com.example.quizpro_cai;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -23,6 +26,11 @@ public class QuestionActivity extends AppCompatActivity {
     private RadioGroup rbGroup;
     private RadioButton rbOption1,rbOption2, rbOption3, rbOption4;
     private Button btnConfirm;
+
+    private static final long COUNTDOWN_IN_MILLIS = 30000; //30 seconds
+
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMillis;
 
     private long backPressedTime;
 
@@ -100,6 +108,8 @@ public class QuestionActivity extends AppCompatActivity {
             answered = false; //declaring false to identify if its correct or not before moving to next question
             btnConfirm.setText("Confirm");
 
+            timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+            startCountdown();
         }else{
             finishQuiz(); //finish if theres no questions left
         }
@@ -107,8 +117,44 @@ public class QuestionActivity extends AppCompatActivity {
 
     }
 
+    private void startCountdown() {
+        countDownTimer = new CountDownTimer(timeLeftInMillis,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+                updateCountdownText();
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMillis = 0;
+                updateCountdownText();
+                checkAnswer();
+            }
+        }.start();
+    }
+
+    private void updateCountdownText() {
+        int minutes = (int) (timeLeftInMillis/1000)/60;
+        int seconds = (int) (timeLeftInMillis/1000) % 60;
+
+        String timeFormatted = String.format(Locale.getDefault(),"%02d:%02d",minutes,seconds);
+
+        tvCountdown.setText(timeFormatted);
+
+        if(timeLeftInMillis < 10000){ //if below 10 seconds
+            tvCountdown.setBackgroundColor(Color.RED);
+            tvCountdown.setTextColor(Color.WHITE);
+        }else{
+            tvCountdown.setBackgroundResource(R.drawable.round_background_orange);
+            tvCountdown.setTextColor(Color.BLACK);
+        }
+    }
+
     private void checkAnswer() {
         answered = true;
+        countDownTimer.cancel(); //cancel the countdown before checking the answer
+
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId()); //get the id of the selected radiobutton
         int answerNr = rbGroup.indexOfChild(rbSelected)+1; //turning into index
 
@@ -122,10 +168,10 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void showSolution() {
-        rbOption1.setBackgroundResource(R.drawable.round_background_red);
-        rbOption2.setBackgroundResource(R.drawable.round_background_red);
-        rbOption3.setBackgroundResource(R.drawable.round_background_red);
-        rbOption4.setBackgroundResource(R.drawable.round_background_red);
+        rbOption1.setBackgroundResource(R.drawable.round_background_gray);
+        rbOption2.setBackgroundResource(R.drawable.round_background_gray);
+        rbOption3.setBackgroundResource(R.drawable.round_background_gray);
+        rbOption4.setBackgroundResource(R.drawable.round_background_gray);
 
         switch (currentQuestion.getAnswerNr()){
             case 1: //identify what was the selected radiobutton that turn it into index
@@ -168,7 +214,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(backPressedTime + 2000 > System.currentTimeMillis()){
+        if(backPressedTime + 2000 > System.currentTimeMillis()){ //2 seconds
             Intent resIntent = new Intent(getApplicationContext(), QuizResult.class);
             resIntent.putExtra("questionOverall", questionCountTotal);
             resIntent.putExtra("resultScore" , score);
@@ -177,5 +223,13 @@ public class QuestionActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "The quiz will be over, Press back again to finish,", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(countDownTimer != null){
+            countDownTimer.cancel();
+        }
     }
 }
