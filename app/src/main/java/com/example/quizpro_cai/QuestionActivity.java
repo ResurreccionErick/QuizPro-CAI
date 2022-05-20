@@ -23,6 +23,7 @@ public class QuestionActivity extends AppCompatActivity {
     private RadioButton rbOption1,rbOption2, rbOption3, rbOption4;
     private Button btnConfirm;
 
+
     private Drawable textColorDefaultRb;
 
     private List<Question> questionList;
@@ -51,7 +52,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         textColorDefaultRb = rbOption1.getBackground(); //get the background of the radio buttons to became default
 
-        QuizDBHelper dbHelper= new QuizDBHelper(this);
+        QuizDbHelper dbHelper= new QuizDbHelper(this);
         questionList = dbHelper.getAllQuestions();
         questionCountTotal = questionList.size(); //how many questions are there in questionList
         Collections.shuffle(questionList);
