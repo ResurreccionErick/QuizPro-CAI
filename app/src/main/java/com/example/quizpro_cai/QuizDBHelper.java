@@ -1,12 +1,17 @@
 package com.example.quizpro_cai;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.example.quizpro_cai.QuizContract.*;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizDBHelper extends SQLiteOpenHelper {
 
@@ -44,9 +49,11 @@ public class QuizDBHelper extends SQLiteOpenHelper {
 
     private void fillQuestionsTable() {
         Question q1 = new Question(" 1+1= ?" , "1","2","3","4",2);
-        Question q2 = new Question(" 2+2= ?" , "4","2","3","4",1);
-        Question q3 = new Question(" 3+3= ?" , "1","2","6","4",3);
         addQuestion(q1);
+        Question q2 = new Question(" 2+2= ?" , "4","2","3","4",1);
+        addQuestion(q2);
+        Question q3 = new Question(" 3+3= ?" , "1","2","6","4",3);
+        addQuestion(q3);
     }
 
     private void addQuestion(Question question){
@@ -58,5 +65,29 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPTION4, question.getOption4());
         cv.put(QuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
         db.insert(QuestionsTable.NUMERACY_TABLE_NAME, null, cv);
+    }
+
+
+    @SuppressLint("Range")
+    public List<Question> getAllQuestions() {
+        List<Question> questionList = new ArrayList<>();
+        db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.NUMERACY_TABLE_NAME, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Question question = new Question();
+                question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
+                question.setOption1(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION1)));
+                question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
+                question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
+                question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
+                question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
+                questionList.add(question);
+            } while (c.moveToNext());
+        }
+
+        c.close();
+        return questionList;
     }
 }

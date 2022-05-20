@@ -1,7 +1,6 @@
 package com.example.quizpro_cai;
 
 public class Question {
-
     private String question;
     private String option1;
     private String option2;
@@ -68,8 +67,4 @@ public class Question {
     public void setAnswerNr(int answerNr) {
         this.answerNr = answerNr;
     }
-
-
-
-
 }
