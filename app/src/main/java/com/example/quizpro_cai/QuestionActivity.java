@@ -24,6 +24,7 @@ public class QuestionActivity extends AppCompatActivity {
     private RadioButton rbOption1,rbOption2, rbOption3, rbOption4;
     private Button btnConfirm;
 
+    private long backPressedTime;
 
     private Drawable textColorDefaultRb;
 
@@ -165,5 +166,16 @@ public class QuestionActivity extends AppCompatActivity {
         startActivity(resIntent);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            Intent resIntent = new Intent(getApplicationContext(), QuizResult.class);
+            resIntent.putExtra("questionOverall", questionCountTotal);
+            resIntent.putExtra("resultScore" , score);
+            startActivity(resIntent);
+        }else{
+            Toast.makeText(getApplicationContext(), "The quiz will be over, Press back again to finish,", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
 }
