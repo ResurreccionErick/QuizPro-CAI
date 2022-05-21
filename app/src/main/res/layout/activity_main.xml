@@ -37,15 +37,17 @@
                 android:layout_width="130dp"
                 android:layout_height="100dp"
                 android:src="@drawable/readlogo"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Learn by Reading"
                 android:layout_marginRight="15dp"
-                android:textStyle="bold"
-                android:textSize="22dp"
+                android:fontFamily="@font/bubblegum_sans"
+                android:text="Learn by Reading"
+                android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textAlignment="center"/>
+                android:textSize="25dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
@@ -78,9 +80,10 @@
                 android:text="Learn by Videos"
                 android:layout_marginLeft="15dp"
                 android:textStyle="bold"
-                android:textSize="22dp"
+                android:textSize="25dp"
                 android:textColor="@color/black"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:fontFamily="@font/bubblegum_sans"/>
             <ImageView
                 android:layout_width="130dp"
                 android:layout_height="100dp"
@@ -121,9 +124,10 @@
                 android:text="Learn by Sounds"
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
-                android:textSize="22dp"
+                android:textSize="25dp"
                 android:textColor="@color/black"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:fontFamily="@font/bubblegum_sans"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -156,9 +160,10 @@
                 android:text="Take a Quiz"
                 android:layout_marginLeft="10dp"
                 android:textStyle="bold"
-                android:textSize="22dp"
+                android:textSize="25dp"
                 android:textColor="@color/black"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:fontFamily="@font/bubblegum_sans"/>
 
             <ImageView
                 android:layout_width="130dp"
@@ -166,6 +171,5 @@
                 android:src="@drawable/quizlogo"/>
         </LinearLayout>
     </LinearLayout>
-
 
 </LinearLayout>

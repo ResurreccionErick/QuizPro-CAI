@@ -1,10 +1,7 @@
 package com.example.quizpro_cai;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -20,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public class QuestionActivity extends AppCompatActivity {
+public class QuestionLanguageActivity extends AppCompatActivity {
 
     private TextView tvScore, tvQuestion, tvQuestionNum, tvCountdown;
     private RadioGroup rbGroup;
@@ -47,7 +44,7 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_question_numeracy);
 
         tvCountdown = findViewById(R.id.tvCountdown);
         tvScore = findViewById(R.id.tvScore);
@@ -63,7 +60,7 @@ public class QuestionActivity extends AppCompatActivity {
         textColorDefaultRb = rbOption1.getBackground(); //get the background of the radio buttons to became default
 
         QuizDbHelper dbHelper= new QuizDbHelper(this);
-        questionList = dbHelper.getAllQuestions();
+        questionList = dbHelper.getAllLanguageQuestions();
         questionCountTotal = questionList.size(); //how many questions are there in questionList
         Collections.shuffle(questionList);
 
@@ -72,11 +69,11 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!answered){ //if not answered
-                        if(rbOption1.isChecked() || rbOption2.isChecked() || rbOption3.isChecked() || rbOption4.isChecked()){
-                            checkAnswer();
-                        }else{ //if no radiobutton selected
-                            Toast.makeText(getApplicationContext(), "Please select an answer", Toast.LENGTH_SHORT).show();
-                        }
+                    if(rbOption1.isChecked() || rbOption2.isChecked() || rbOption3.isChecked() || rbOption4.isChecked()){
+                        checkAnswer();
+                    }else{ //if no radiobutton selected
+                        Toast.makeText(getApplicationContext(), "Please select an answer", Toast.LENGTH_SHORT).show();
+                    }
                 }else{ //if answered, show next question
                     showNextQuestion();
                 }
