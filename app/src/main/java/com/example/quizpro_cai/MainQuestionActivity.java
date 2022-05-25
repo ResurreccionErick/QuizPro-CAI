@@ -21,24 +21,6 @@ public class MainQuestionActivity extends AppCompatActivity {
         btnLanguageLiteracy = findViewById(R.id.qMainLanguageLiteracy);
         btnFilipino = findViewById(R.id.qMainFilipino);
 
-        btnLanguageLiteracy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), QuestionLanguageActivity.class);
-                intent.putExtra("selectedSubject", "Language Literacy Quiz");
-                startActivity(intent);
-            }
-        });
-
-        btnReading.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), QuestionReadingActivity.class);
-                intent.putExtra("selectedSubject", "Reading Quiz");
-                startActivity(intent);
-            }
-        });
-
         btnNumeracy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,14 +30,6 @@ public class MainQuestionActivity extends AppCompatActivity {
             }
         });
 
-        btnFilipino.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), QuestionFilipinoActivity.class);
-                intent.putExtra("selectedSubject", "Filipino Quiz");
-                startActivity(intent);
-            }
-        });
 
 
 

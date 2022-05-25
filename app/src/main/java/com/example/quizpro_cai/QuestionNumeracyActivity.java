@@ -60,7 +60,7 @@ public class QuestionNumeracyActivity extends AppCompatActivity {
         textColorDefaultRb = rbOption1.getBackground(); //get the background of the radio buttons to became default
 
         QuizDbHelper dbHelper= new QuizDbHelper(this);
-        questionList = dbHelper.getAllNumeracyQuestions();
+        //questionList = dbHelper.getAllNumeracyQuestions();
         questionCountTotal = questionList.size(); //how many questions are there in questionList
         Collections.shuffle(questionList);
 

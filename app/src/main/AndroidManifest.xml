@@ -11,13 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizProCAI">
         <activity
-            android:name=".QuestionReadingActivity"
+            android:name=".MainActivityAdmin"
             android:exported="true" />
         <activity
-            android:name=".QuestionFilipinoActivity"
+            android:name=".AdminAddQuestion"
             android:exported="true" />
         <activity
-            android:name=".QuestionLanguageActivity"
+            android:name=".AdminNumeracy"
+            android:exported="true" />
+        <activity
+            android:name=".AdminSubjects"
             android:exported="true" />
         <activity
             android:name=".QuizResult"
