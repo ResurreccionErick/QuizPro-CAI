@@ -35,7 +35,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
         private SQLiteDatabase db;
 
-        public QuizDbHelper(@Nullable Context context) {
+        QuizDbHelper(@Nullable Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             this.context = context;
         }
@@ -76,7 +76,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
             long result = db.insert(NUMERACY_TABLE_NAME,null,cv);
 
             if(result == -1){ //if failed
-                Toast.makeText(context.getApplicationContext(), "Failed to add", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Failed to add", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(context, "Successfully added", Toast.LENGTH_SHORT).show();
             }
@@ -91,8 +91,25 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 cursor = db.rawQuery(query,null);
             }
             return cursor;
-
         }
+
+    public void updateQuestion(String row_id, String question, String option1, String option2, String option3, String option4, String answer){
+        db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_QUESTION, question);
+        cv.put(COLUMN_OPTION1, option1);
+        cv.put(COLUMN_OPTION2, option2);
+        cv.put(COLUMN_OPTION3, option3);
+        cv.put(COLUMN_OPTION4, option4);
+        cv.put(COLUMN_ANSWER, answer);
+        long result = db.update(NUMERACY_TABLE_NAME,cv,COLUMN_ID+"=?" , new String[]{row_id});
+
+        if(result == -1){ //if failed
+            Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Question was updated", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 //        @SuppressLint("Range")
 //        public List<Question> getAllNumeracyQuestions() {

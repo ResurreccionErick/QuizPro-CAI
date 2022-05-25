@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizProCAI">
         <activity
+            android:name=".AdminUpdateQuestion"
+            android:exported="true" />
+        <activity
             android:name=".MainActivityAdmin"
             android:exported="true" />
         <activity

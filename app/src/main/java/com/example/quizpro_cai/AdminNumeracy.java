@@ -1,5 +1,6 @@
 package com.example.quizpro_cai;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,12 +51,20 @@ public class AdminNumeracy extends AppCompatActivity {
 
        storeDataInArrays();
 
-        customAdapter = new CustomAdapter(AdminNumeracy.this, questionId, question, opt1, opt2, opt3, opt4, ans);
+        customAdapter = new CustomAdapter(AdminNumeracy.this,this, questionId, question, opt1, opt2, opt3, opt4, ans);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(AdminNumeracy.this));
-
     }
-        void storeDataInArrays(){
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            recreate();
+        }
+    }
+
+    void storeDataInArrays(){
             Cursor cursor = dbHelper.readAllData();
             if(cursor.getCount() == 0){
                 Toast.makeText(getApplicationContext(), "There is no Question in database", Toast.LENGTH_SHORT).show();

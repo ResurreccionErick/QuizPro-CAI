@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="25dp"
+    android:id="@+id/mainLayout"
+    android:background="@color/white"
     >
 
     <androidx.cardview.widget.CardView
@@ -13,33 +15,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="#E8E8E8"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             >
 
             <TextView
                 android:id="@+id/questionIdRv"
-                android:layout_width="50dp"
+                android:layout_width="55dp"
                 android:layout_height="150dp"
-                android:padding="10dp"
-                android:textColor="@color/white"
+                android:background="#FF6633"
                 android:gravity="center"
+                android:padding="10dp"
                 android:text="11"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:background="@color/light_orange"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtQuestionRv"
-                android:layout_width="350dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
@@ -47,14 +47,12 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/questionIdRv"
                 app:layout_constraintTop_toTopOf="@+id/questionIdRv" />
 
             <TextView
                 android:id="@+id/txtOpt1"
-                android:layout_width="350dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
@@ -66,7 +64,7 @@
 
             <TextView
                 android:id="@+id/txtOpt2"
-                android:layout_width="350dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="16sp"
@@ -76,7 +74,7 @@
 
             <TextView
                 android:id="@+id/txtOpt3"
-                android:layout_width="350dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="16sp"
@@ -86,7 +84,7 @@
 
             <TextView
                 android:id="@+id/txtOpt4"
-                android:layout_width="350dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="16sp"
@@ -96,7 +94,7 @@
 
             <TextView
                 android:id="@+id/txtAns"
-                android:layout_width="350dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="TextView"
@@ -107,7 +105,29 @@
                 app:layout_constraintStart_toStartOf="@+id/txtOpt4"
                 app:layout_constraintTop_toBottomOf="@+id/txtOpt4" />
 
+            <ImageView
+                android:id="@+id/btnEdit"
+                android:layout_width="40dp"
+                android:layout_height="75dp"
+                android:background="#4CAF50"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/edit_icon" />
+
+            <ImageView
+                android:id="@+id/btnDelete"
+                android:layout_width="40dp"
+                android:layout_height="75dp"
+                android:background="#E91E3C"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/delete_icon" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

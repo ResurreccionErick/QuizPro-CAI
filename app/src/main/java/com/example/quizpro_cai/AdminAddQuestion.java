@@ -2,6 +2,7 @@ package com.example.quizpro_cai;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +43,16 @@ public class AdminAddQuestion extends AppCompatActivity {
                             txtOption3.getText().toString(),
                             txtOption4.getText().toString(),
                             txtAns.getText().toString());
+
+                    txtQues.setText("");
+                    txtOption1.setText("");
+                    txtOption2.setText("");
+                    txtOption3.setText("");
+                    txtOption4.setText("");
+                    txtAns.setText("");
+
+                    startActivity(new Intent(getApplicationContext(), AdminSubjects.class));
+
 
                 }
             }
