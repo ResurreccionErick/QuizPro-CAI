@@ -17,9 +17,6 @@
             android:name=".MainActivityAdmin"
             android:exported="true" />
         <activity
-            android:name=".AdminAddQuestion"
-            android:exported="true" />
-        <activity
             android:name=".AdminNumeracy"
             android:exported="true" />
         <activity

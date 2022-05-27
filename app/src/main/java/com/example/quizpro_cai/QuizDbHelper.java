@@ -2,12 +2,8 @@ package com.example.quizpro_cai;
 
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -97,7 +93,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
             return cursor;
         }
 
-    public void updateQuestion(String row_id, String question, String option1, String option2, String option3, String option4, String answer){
+    public void updateQuestion(String row_id, String question, String option1, String option2, String option3, String option4, int answer){
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_QUESTION, question);
@@ -125,7 +121,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Question was Deleted", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
         @SuppressLint("Range")

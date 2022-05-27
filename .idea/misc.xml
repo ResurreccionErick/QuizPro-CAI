@@ -29,7 +29,9 @@
         <entry key="..\:/QuizProCAI/app/src/main/res/layout/activity_question_numeracy.xml" value="0.36666666666666664" />
         <entry key="..\:/QuizProCAI/app/src/main/res/layout/activity_question_reading.xml" value="0.36666666666666664" />
         <entry key="..\:/QuizProCAI/app/src/main/res/layout/activity_quiz_result.xml" value="0.36666666666666664" />
+        <entry key="..\:/QuizProCAI/app/src/main/res/layout/add_question_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/QuizProCAI/app/src/main/res/layout/my_question_recyclerview_row.xml" value="0.36666666666666664" />
+        <entry key="..\:/QuizProCAI/app/src/main/res/layout/update_question_dialog.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

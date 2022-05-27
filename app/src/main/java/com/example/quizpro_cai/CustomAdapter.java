@@ -3,6 +3,7 @@ package com.example.quizpro_cai;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +33,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Context context;
     Activity activity;
     private ArrayList questionId, question, opt1,opt2,opt3,opt4, ans;
+    private Dialog updateQuestionDialog;
 
     public CustomAdapter(Activity activity, Context context, ArrayList questionId, ArrayList question, ArrayList opt1, ArrayList opt2, ArrayList opt3, ArrayList opt4, ArrayList ans) {
         this.activity = activity;
@@ -54,7 +58,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        Intent intent = new Intent(context, AdminUpdateQuestion.class);
+        updateQuestionDialog = new Dialog(context); //this dialog is for adding question
+        updateQuestionDialog.setContentView(R.layout.update_question_dialog);
+        updateQuestionDialog.setCancelable(true);
+        updateQuestionDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        EditText dialogQuestion = (EditText) updateQuestionDialog.findViewById(R.id.txtUpdateQuestion);
+        EditText dialogOpt1 = (EditText) updateQuestionDialog.findViewById(R.id.txtUpdateOption1);
+        EditText dialogOpt2 = (EditText) updateQuestionDialog.findViewById(R.id.txtUpdateOption2);
+        EditText dialogOpt3 = (EditText) updateQuestionDialog.findViewById(R.id.txtUpdateOption3);
+        EditText dialogOpt4 = (EditText) updateQuestionDialog.findViewById(R.id.txtUpdateOption4);
+        EditText dialogAns = (EditText) updateQuestionDialog.findViewById(R.id.txtUpdateAnswer);
+        Button btnUpdateQuesDialog = (Button) updateQuestionDialog.findViewById(R.id.btnUpdateQuestion);
+
+        //Intent intent = new Intent(context, AdminUpdateQuestion.class);
         holder.quesId.setText(String.valueOf(questionId.get(position)));
         holder.question.setText(String.valueOf(question.get(position)));
         holder.opt1.setText(String.valueOf(opt1.get(position)));
@@ -62,18 +79,39 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.opt3.setText(String.valueOf(opt3.get(position)));
         holder.opt4.setText(String.valueOf(opt4.get(position)));
         holder.ans.setText(String.valueOf(ans.get(position)));
+
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateQuestionDialog.show();
 
-                intent.putExtra("q_id", String.valueOf(questionId.get(position)));
-                intent.putExtra("q_ques", String.valueOf(question.get(position)));
-                intent.putExtra("q_opt1", String.valueOf(opt1.get(position)));
-                intent.putExtra("q_opt2", String.valueOf(opt2.get(position)));
-                intent.putExtra("q_opt3", String.valueOf(opt3.get(position)));
-                intent.putExtra("q_opt4", String.valueOf(opt4.get(position)));
-                intent.putExtra("q_ans", String.valueOf(ans.get(position)));
-                activity.startActivityForResult(intent,1);
+                dialogQuestion.setText(String.valueOf(question.get(position))); //set text the info to pick where to update
+                dialogOpt1.setText(String.valueOf(opt1.get(position)));
+                dialogOpt2.setText(String.valueOf(opt3.get(position)));
+                dialogOpt3.setText(String.valueOf(opt3.get(position)));
+                dialogOpt4.setText(String.valueOf(opt4.get(position)));
+                dialogAns.setText(String.valueOf(ans.get(position)));
+
+                btnUpdateQuesDialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String id = String.valueOf(questionId.get(position));
+                        String question = dialogQuestion.getText().toString().trim();
+                        String opt1 = dialogOpt1.getText().toString().trim();
+                        String opt2 = dialogOpt2.getText().toString().trim();
+                        String opt3 = dialogOpt3.getText().toString().trim();
+                        String opt4 = dialogOpt4.getText().toString().trim();
+                        int ans = Integer.parseInt(dialogAns.getText().toString().trim());
+
+                        //then pass the updated data in updateQuestion constructor in QuizDBHelper
+                        QuizDbHelper dbHelper = new QuizDbHelper(context);
+                        dbHelper.updateQuestion(id, question, opt1,opt2,opt3,opt4,ans);
+
+                        context.startActivity(new Intent(context, AdminNumeracy.class));
+                    }
+                });
+
+
             }
         });
 

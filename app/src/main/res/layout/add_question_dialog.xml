@@ -2,32 +2,31 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AdminAddQuestion">
-
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
     <EditText
-        android:id="@+id/txtQuestion"
+        android:id="@+id/txtAddQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Question"
-        android:inputType="textMultiLine"
+        android:inputType="text"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtOption1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Option 1"
@@ -35,14 +34,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAddQuestion" />
 
     <EditText
         android:id="@+id/txtOption2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Option 2"
@@ -57,8 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Option 3"
         android:inputType="textPersonName"
@@ -72,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Option 4"
@@ -87,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="What Option is the Answer?"
@@ -104,7 +103,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="16dp"
         android:text="Add"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -112,21 +111,6 @@
         app:layout_constraintStart_toStartOf="@+id/txtAnswer"
         app:layout_constraintTop_toBottomOf="@+id/txtAnswer"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="180dp"
-        android:text="Add Question"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bubblegum_sans"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
