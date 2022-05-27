@@ -2,21 +2,27 @@ package com.example.quizpro_cai;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
@@ -48,7 +54,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-
+        Intent intent = new Intent(context, AdminUpdateQuestion.class);
         holder.quesId.setText(String.valueOf(questionId.get(position)));
         holder.question.setText(String.valueOf(question.get(position)));
         holder.opt1.setText(String.valueOf(opt1.get(position)));
@@ -59,7 +65,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, AdminUpdateQuestion.class);
+
                 intent.putExtra("q_id", String.valueOf(questionId.get(position)));
                 intent.putExtra("q_ques", String.valueOf(question.get(position)));
                 intent.putExtra("q_opt1", String.valueOf(opt1.get(position)));
@@ -71,6 +77,30 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             }
         });
 
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String deleted_id = String.valueOf(questionId.get(position));
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Delete Question");
+                builder.setMessage("Are you sure you want to delete this question?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        QuizDbHelper dbHelper = new QuizDbHelper(context);
+                        dbHelper.deleteOneQuestion(deleted_id);
+                        context.startActivity(new Intent(context, AdminNumeracy.class));
+                    }
+                }).show();
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        context.startActivity(new Intent(context, AdminNumeracy.class));
+                    }
+                }).show();
+            }
+        });
     }
 
 
@@ -96,8 +126,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             ans = itemView.findViewById(R.id.txtAns);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
-
-
 
         }
     }

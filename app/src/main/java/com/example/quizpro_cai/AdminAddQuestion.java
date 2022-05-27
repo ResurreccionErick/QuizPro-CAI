@@ -42,7 +42,8 @@ public class AdminAddQuestion extends AppCompatActivity {
                             txtOption2.getText().toString(),
                             txtOption3.getText().toString(),
                             txtOption4.getText().toString(),
-                            txtAns.getText().toString());
+                            //txtAns.getText().toString());
+                            Integer.parseInt(txtAns.getText().toString()));
 
                     txtQues.setText("");
                     txtOption1.setText("");

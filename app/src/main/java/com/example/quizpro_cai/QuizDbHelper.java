@@ -2,8 +2,12 @@ package com.example.quizpro_cai;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -51,7 +55,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                     COLUMN_OPTION2 + " TEXT, " +
                     COLUMN_OPTION3 + " TEXT, " +
                     COLUMN_OPTION4 + " TEXT, " +
-                    COLUMN_ANSWER + " TEXT);";
+                    COLUMN_ANSWER + " INTEGER);";
             db.execSQL(SQL_CREATE_NUMERACY_QUESTIONS_TABLE);
 
         }
@@ -64,7 +68,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
 
 
-        void addQuestion(String question, String option1, String option2, String option3, String option4, String answer){
+        void addQuestion(String question, String option1, String option2, String option3, String option4, int answer){
             db = this.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(COLUMN_QUESTION, question);
@@ -111,28 +115,41 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         }
     }
 
-//        @SuppressLint("Range")
-//        public List<Question> getAllNumeracyQuestions() {
-//            List<Question> numeracyQuestionList = new ArrayList<>();
-//            db = getReadableDatabase();
-//            Cursor c = db.rawQuery("SELECT * FROM " + numeracyTable.NUMERACY_TABLE_NAME, null);
-//
-//            if (c.moveToFirst()) {
-//                do {
-//                    Question question = new Question();
-//                    question.setQuestion(c.getString(c.getColumnIndex(numeracyTable.COLUMN_QUESTION)));
-//                    question.setOption1(c.getString(c.getColumnIndex(numeracyTable.COLUMN_OPTION1)));
-//                    question.setOption2(c.getString(c.getColumnIndex(numeracyTable.COLUMN_OPTION2)));
-//                    question.setOption3(c.getString(c.getColumnIndex(numeracyTable.COLUMN_OPTION3)));
-//                    question.setOption4(c.getString(c.getColumnIndex(numeracyTable.COLUMN_OPTION4)));
-//                    question.setAnswerNr(c.getInt(c.getColumnIndex(numeracyTable.COLUMN_ANSWER)));
-//                    numeracyQuestionList.add(question);
-//                } while (c.moveToNext());
-//            }
-//
-//            c.close();
-//            return numeracyQuestionList;
-//        }
+    public void deleteOneQuestion(String row_id){
+            db = this.getWritableDatabase();
+            long result = db.delete(NUMERACY_TABLE_NAME, COLUMN_ID+"=?", new String[]{row_id});
+
+        if(result == -1){ //if failed
+            Toast.makeText(context, "Failed to Delete", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Question was Deleted", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+        @SuppressLint("Range")
+        public List<Question> getAllNumeracyQuestions() {
+            List<Question> numeracyQuestionList = new ArrayList<>();
+            db = getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + NUMERACY_TABLE_NAME, null);
+
+            if (c.moveToFirst()) {
+                do {
+                    Question question = new Question();
+                    question.setQuestion(c.getString(c.getColumnIndex(COLUMN_QUESTION)));
+                    question.setOption1(c.getString(c.getColumnIndex(COLUMN_OPTION1)));
+                    question.setOption2(c.getString(c.getColumnIndex(COLUMN_OPTION2)));
+                    question.setOption3(c.getString(c.getColumnIndex(COLUMN_OPTION3)));
+                    question.setOption4(c.getString(c.getColumnIndex(COLUMN_OPTION4)));
+                    question.setAnswerNr(c.getInt(c.getColumnIndex(COLUMN_ANSWER)));
+                    numeracyQuestionList.add(question);
+                } while (c.moveToNext());
+            }
+
+            c.close();
+            return numeracyQuestionList;
+        }
 
 
     }

@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = txtEmail.getText().toString();
                 String pass = txtPass.getText().toString();
 
-                startActivity(new Intent(getApplicationContext(), MainActivityAdmin.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
 
 //                if(email.isEmpty() || pass.isEmpty()){
