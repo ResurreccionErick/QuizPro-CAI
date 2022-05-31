@@ -11,7 +11,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="320dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,20 +24,18 @@
 
             <TextView
                 android:id="@+id/questionIdRv"
-                android:layout_width="50dp"
-                android:layout_height="260dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:background="#FF6633"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="11"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:singleLine="true"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="ID"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtQuestionRv"
@@ -94,11 +92,9 @@
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:singleLine="true"
                 android:text="TextView"
                 android:textSize="16sp"
-                android:singleLine="true"
-                app:layout_constraintEnd_toEndOf="@+id/txtOpt3"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="@+id/textView6" />
 
@@ -119,25 +115,24 @@
 
             <ImageView
                 android:id="@+id/btnEdit"
-                android:layout_width="140dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="25dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="#4CAF50"
                 android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/questionIdRv"
+                app:layout_constraintEnd_toStartOf="@+id/btnDelete"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
+                app:layout_constraintVertical_bias="0.478"
                 app:srcCompat="@drawable/edit_icon" />
 
             <ImageView
                 android:id="@+id/btnDelete"
-                android:layout_width="140dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
                 android:background="#E91E3C"
                 android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -150,12 +145,13 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:text="Question:"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/questionIdRv"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/questionIdRv" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -164,6 +160,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Option1:"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -174,6 +171,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Option2:"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -182,8 +180,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Option3"
+                android:text="Option3:"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -191,11 +190,11 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:text="Option4:"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/questionIdRv"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <TextView
@@ -203,8 +202,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Answer: Option "
+                android:text="Answer Option: "
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 

@@ -71,8 +71,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         EditText dialogAns = (EditText) updateQuestionDialog.findViewById(R.id.txtUpdateAnswer);
         Button btnUpdateQuesDialog = (Button) updateQuestionDialog.findViewById(R.id.btnUpdateQuestion);
 
-        //Intent intent = new Intent(context, AdminUpdateQuestion.class);
-        holder.quesId.setText(String.valueOf(questionId.get(position)));
+
+        holder.quesId.setText(String.valueOf("ID: "+questionId.get(position)));
         holder.question.setText(String.valueOf(question.get(position)));
         holder.opt1.setText(String.valueOf(opt1.get(position)));
         holder.opt2.setText(String.valueOf(opt2.get(position)));
